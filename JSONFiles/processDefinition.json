@@ -1,0 +1,75 @@
+{
+    "Processus": {
+        "Steps": [
+            {
+                "step": {
+                    "name": "brouillonPret",
+                    "nextStep": [
+                        "verifierDocument"
+                    ],
+                    "collaborateurs": "demandeur",
+                    "state": "initial",
+                    "condition": [
+                        "OK",
+                        "NOTOK"
+                    ],
+                    "result": "validate"
+                }
+            },
+            {
+                "step": {
+                    "name": "verifierDocument",
+                    "nextStep": [
+                        "archiverDocument",
+                        "corrigerDocument"
+                    ],
+                    "collaborateurs": "",
+                    "state": "intermediare",
+                    "condition": [
+                        "OK",
+                        "NOTOK"
+                    ],
+                    "result": "validate"
+                }
+            },
+            {
+                "step": {
+                    "name": "archiverDocument",
+                    "nextStep": "documentApprouve",
+                    "collaborateurs": "",
+                    "state": "intermediare",
+                    "condition": [
+                        "OK",
+                        "NOTOK"
+                    ],
+                    "result": "validate"
+                }
+            },
+            {
+                "step": {
+                    "name": "corrigerDocument",
+                    "nextStep": "brouillonPret",
+                    "collaborateurs": "",
+                    "state": "intermediare",
+                    "condition": [
+                        "OK",
+                        "NOTOK"
+                    ],
+                    "result": "validate"
+                }
+            },
+            {
+                "step": {
+                    "name": "documentApprouve",
+                    "collaborateurs": "approbateur",
+                    "state": "final",
+                    "condition": [
+                        "OK",
+                        "NOTOK"
+                    ],
+                    "result": "validate"
+                }
+            }
+        ]
+    }
+}

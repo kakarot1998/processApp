@@ -1,0 +1,38 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+          <font color="White">
+              <p style="font-size:250%;">Login</p></font>
+        <% include ./partials/messages %>
+        <form action="/users/login" method="POST">
+          <div class="form-group"><font color="Black">
+
+            <label for="email">Email</label></font>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="Enter Email"
+            />
+          </div>
+          <div class="form-group">
+              <font color="Black">
+
+            <label for="password">Password</label></font>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Enter Password"
+            />
+          </div>
+          <button type="submit" class="btn btn-danger btn-block">Login</button>
+        </form>
+        <p class="lead mt-4"><font color="black">
+          No Account? <a href="/users/register">Register</a></font>
+        </p>
+      </div>
+    </div>
+  </div>

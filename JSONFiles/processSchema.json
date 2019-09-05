@@ -1,0 +1,59 @@
+{
+    "schemaID": "",
+    "Processus": {
+        "idInstance": "",
+        "currentStep": "brouillonPret",
+    "Steps": [
+        {
+            "step": {
+                "name": "brouillonPret",
+                "nextStep": "verifierDocument",
+                "collaborateurs": "",
+                "state": "initial",
+                "condition": "",
+                "result": ""
+            }
+        },
+        {
+            "step": {
+                "name": "",
+                "nextStep": "",
+                "collaborateurs": "",
+                "state": "",
+                "condition": "",
+                "result": ""
+            }
+        },
+        {
+            "step": {
+                "name": "",
+                "nextStep": "",
+                "collaborateurs": "",
+                "state": "",
+                "condition": "",
+                "result": ""
+            }
+        },
+        {
+            "step": {
+                "name": "",
+                "nextStep": "",
+                "collaborateurs": "",
+                "state": "",
+                "condition": "",
+                "result": ""
+            }
+        },
+        {
+            "step": {
+                "name": "",
+                "nextStep": "",
+                "collaborateurs": "",
+                "state": "",
+                "condition": "",
+                "result": ""
+            }
+        }
+    ]
+}
+}
