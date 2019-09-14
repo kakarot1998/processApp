@@ -1,0 +1,32 @@
+<script src="/socket.io/socket.io.js"></script>
+<form action="http://localhost:3000/tasks/start" method="POST">
+    <label >Nom Collaborateur</label>
+    <input name="coll" type="text"></br>
+    <label>Condition</label>
+    <select name="condition">
+            <option value="ok">OK</option>
+            <option value="not ok"">NOT OK</option>
+    </select></br>
+    <label > Result</label>
+    <select name="result">
+            <option value="validate">Validate</option>
+            <option value="revert">Revert</option>
+    </select></br>
+    <button type="submit" class="btn btn-danger">Demarrer</button>
+</form>
+<script>
+
+    function start(){
+    $(function () {
+        var socket = io.connect();
+        socket.emit('json update');
+    })}
+</script>
+<div>
+        <p id="schema"></p>
+    </div>
+    <div>
+        <p id="collab"></p>
+    </div>
+    <br />
+<a href="/tasks/History" class="btn btn-danger">Voir l'historique</a>

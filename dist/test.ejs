@@ -1,0 +1,22 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    function start(){
+    $(function () {
+        var socket = io.connect();
+        
+            socket.emit('json update');
+        $(document).ready(function () {
+            $.getJSON("processData.json", function (data) {
+                $(data).each(function (index, value) {
+                    $("#schema").append("L'id du schema est : " + value.schemaID);
+                    $("#collab").append(value.Processus.Steps[0].step.collaborateurs);
+                })
+            })
+        })
+    })}
+</script>
+<a href="/tasks/start" class="btn btn-danger">Aller demarrer un processus</a>
+<a href="/tasks/History" class="btn btn-danger">Retour a l'historique</a>
+<a href="/tasks/doAction" class="btn btn-danger">Executer une etape</a>
+
+

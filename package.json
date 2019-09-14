@@ -11,15 +11,19 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "*",
+    "body-parser": "^1.19.0",
+    "brfs": "^2.0.2",
+    "browserfs": "^1.4.3",
     "browserify": "^16.5.0",
     "connect-flash": "*",
     "cookie-parser": "*",
+    "cors": "^2.8.5",
     "ejs": "^2.6.2",
-    "express": "^4.17.1",
     "express-ejs-layouts": "*",
     "express-messages": "*",
     "express-session": "^1.16.1",
     "express-validator": "*",
+    "faye": "^1.2.4",
     "http-server": "^0.11.1",
     "jade": "*",
     "jquery": "^3.4.1",
@@ -32,7 +36,10 @@
     "passport": "*",
     "passport-http": "*",
     "passport-local": "*",
-    "socket.io": "^2.2.0"
+    "pdfkit": "^0.10.0",
+    "socket-io": "^1.0.0",
+    "socket.io": "^2.2.0",
+    "superagent": "^5.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -41,10 +48,12 @@
     "babel-preset-stage-0": "^6.24.1",
     "browserify-fs": "^1.0.0",
     "domready": "1.0.8",
+    "express": "^4.17.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-middleware": "^3.7.1",
     "xmlhttprequest": "^1.8.0"
   }
 }

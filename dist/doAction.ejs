@@ -1,0 +1,43 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function () {
+        $.getJSON("processData.json", function (data) {
+            $(data).each(function (index, value) {
+                $("#currentStep").append("Vous etes actuellement dans l'etape : " + value.Processus.currentStep);
+            })
+        })
+    })
+
+</script>
+<p id="currentStep"></p>
+<form action="http://localhost:3000/tasks/doAction" method="POST">
+    <label>Nom Collaborateur</label>
+    <input name="coll" type="text"></br>
+    <label>Etape actuelle</label>
+    <input name="currentS" type="text"></br>
+    <label>Etape a executer</label>
+    <input name="etape" type="text"></br>
+    <label>Condition</label>
+    <select name="condition">
+        <option value="ok">OK</option>
+        <option value="not ok"">NOT OK</option>
+    </select></br>
+    <label>Result</label>
+    <select name="result">
+        <option value="validate">Validate</option>
+        <option value="revert">Revert</option>
+    </select></br>
+
+    <button class="btn btn-danger type="submit">send</button></br>
+</form>
+<script>
+    function doA() {
+        $(function () {
+            var socket = io.connect();
+            socket.emit('do action');
+        })
+    }
+</script>
+<script>
+</script>
+<a href="/tasks/History" class="btn btn-danger">Voir l'historique</a>

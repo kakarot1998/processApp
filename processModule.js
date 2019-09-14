@@ -2,6 +2,8 @@ var uuid = require('uuid');
 var fs = require('fs');
 var path = require('path');
 var file = require('./JSONFiles/processSchema.json');
+var jsdom = require('jsdom');
+var $ = require('jquery')(new jsdom.JSDOM().window);
 const definition = require('./JSONFiles/processDefinition.json');
 
 
@@ -22,104 +24,41 @@ function fileParser() {
 function makeInstance(schemaID) {
     var dataFile = require('./JSONFiles/processData.json');
     dataFile.schemaID = schemaID;
-    dataFile.Processus.idInstance = uuid.v4();
+    var inst = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    dataFile.Processus.idInstance = inst;
     console.log("votre ID d'instance est : " + dataFile.Processus.idInstance);
     fs.writeFileSync('./JSONFiles/processData.json', JSON.stringify(dataFile));
+    return inst;
 };
 function getNextStep(schemaID, currentStep) {
-    $(document).ready(function(){
-        $.ajax({
-            url: "processData.json",
-            dataType: "json",
-            success: function(data){
-                $(data).each(function(index,value){
-                        if(data.schemaID!==schemaID){
-                            alert("fichier schema incorrect");
-                        }else if(data.schemaID==schemaID && currentStep === "brouillonPret" ){
-                            $("#currentStep").append(currentStep);
-                            $("#nextStep").append("Les etapes suivantes sont : "+ value.Processus.Steps[index+1].step.name + "," +value.Processus.Steps[index+2].step.name + "," + value.Processus.Steps[index+3].step.name + "," + value.Processus.Steps[index+4].step.name);
 
-                        } else {
-                            if(currentStep!==data.currentStep){
-                                alert("etape inconnue");
-                            }else {
-                                $.ajax({
-                                    url: "processDefinition.json",
-                                    dataType: "json",
-                                    success : function(data){
-                                        $(data).each(function(index,value){
-                                                var stepNames = JSON.stringify(data.Processus.Steps[index].step.name);
-                                                var n = stepNames.includes(currentStep);
-                                                if(n==false){
-                                                    alert("L'etape avec l'indice suivant " + index + "n'est pas l'etape actuelle");
+     let ongoingStep, nextStep;
+     var dataFile = require('./JSONFiles/processData.json');
+     const definition = require('./JSONFiles/processDefinition.json');
+     if (schemaID !== dataFile.schemaID) {
+         console.log("Erreur : fichier schema incompatible");
+     }
+     else {
+         if (currentStep !== dataFile.Processus.currentStep) {
+             console.log("Erreur : Etape inconnue");
+         } else {
+             for (i = 0; i < definition.Processus.Steps.length; i++) {
+                 var stepNames = JSON.stringify(definition.Processus.Steps[i].step.name);
+                 var n = stepNames.includes(currentStep);
+                 if (n == false) {
+                     console.log("L'etape avec l'indice suivant n'est pas l'etape actuelle: " + i);
+                 } else if (currentStep === "documentApprouve") {
+                     console.log("L'etape actuelle est : " + currentStep);
+                 console.log("Ceci est la derniere etape");
 
-                                                }else if(currentStep==="documentApprouve"){
-                                                    $("#currentStep").append(currentStep);
-                                                    $("#nextStep").append("Ceci est L'etape finale");
-
-                                                }else {
-                                                    ongoingStep = value.Processus.Steps[index].step.name;
-                                                    nextStep = value.Processus.Steps[++index].step.name;
-                                                    $("#currentStep").append("L'etape actuelle est : " + ongoingStep);
-                                                    $("#nextStep").append("L'etape suivante est : " + nextStep);
-                                                }
-
-
-
-                                        })
-
-                                    }
-                                    
-                                })
-
-                            }
-
-                        }
-
-
-                })
-
-            }
-
-
-        })
-
-
-    })
-    // let ongoingStep, nextStep;
-    // var dataFile = require('./JSONFiles/processData.json');
-    // const definition = require('./JSONFiles/processDefinition.json');
-    // if (schemaID !== dataFile.schemaID) {
-    //     console.log("Erreur : fichier schema incompatible");
-    // }
-    // else if (schemaID === dataFile.schemaID && currentStep === "brouillonPret") {
-    //     $("#currentStep").append(currentStep);
-    //     $("#nextStep").append("Les etapes suivantes sont : " + definition.Processus.Steps[0].step.name + "," + definition.Processus.Steps[1].step.name + "," + definition.Processus.Steps[2].step.name + "," + definition.Processus.Steps[3].step.name);
-
-    // }
-    // else {
-    //     if (currentStep !== dataFile.Processus.currentStep) {
-    //         console.log("Erreur : Etape inconnue");
-    //     } else {
-    //         for (i = 0; i < definition.Processus.Steps.length; i++) {
-    //             var stepNames = JSON.stringify(definition.Processus.Steps[i].step.name);
-    //             var n = stepNames.includes(currentStep);
-    //             if (n == false) {
-    //                 console.log("L'etape avec l'indice suivant n'est pas l'etape actuelle: " + i);
-    //             } else if (currentStep === "documentApprouve") {
-    //                 console.log("L'etape actuelle est : " + currentStep);
-    //                 console.log("Ceci est la derniere etape");
-
-    //             }
-    //             else {
-    //                 ongoingStep = definition.Processus.Steps[i].step.name;
-    //                 nextStep = definition.Processus.Steps[++i].step.name;
-    //                 console.log("L'etape actuelle est : " + ongoingStep);
-    //                 console.log("L'etape suivante est : " + nextStep);
-    //             }
-    //         }
-    //     }
-    // }
+                 }
+                 else {
+                     ongoingStep = definition.Processus.Steps[i].step.name;
+                     nextStep = definition.Processus.Steps[++i].step.name;
+                 }
+             }
+     }
+     }
 
 }
 function isEmpty(schemaID) {
@@ -139,9 +78,33 @@ function isEmpty(schemaID) {
         }
     }
 }
+function random(){
+    var test = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    console.log(test);
+}
+function processGO(userID,fileID){
+    $(document).ready(function(){
+        $.getJSON("processData.json",function(data){
+                $(data).each(function(index,value){
+                    if (fileID !== data.schemaID){
+                        alert("fichier schema incompatible");
+                    }else {
+                        $("#schema").append("L'id du schema est : "+ fileID);
+                        value.Processus.currentStep = "brouillonPret";
+                        value.Processus.Steps[0].step.collaborateurs = userID;
+                        fs.writeFileSync('./JSONFiles/processData.json', JSON.stringify(value));
+                    }
 
 
-module.exports = { fileParser, makeInstance, getNextStep }
+                })
+        })
+
+        
+
+
+    })
+}
+module.exports = { processGO, fileParser, makeInstance, getNextStep }
 //fileParser();
 //getNextStep(1,"documentApprouve");
 //isEmpty(1);

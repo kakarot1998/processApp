@@ -10,5 +10,15 @@ router.post('/myPersTasks',(req,res)=>{
 
 
 })
+router.get('/test', (req, res) => res.render('test'));
+router.get('/start', (req, res) => res.render('startProcess'));
+router.get('/doAction', (req, res) => res.render('doAction'));
+router.post('/viewJSON',(req,res)=>{
+
+
+})
+
+
+
 router.use(express.static('script'));
 module.exports = router;    
