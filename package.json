@@ -26,7 +26,7 @@
     "faye": "^1.2.4",
     "http-server": "^0.11.1",
     "jade": "*",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsdom": "^15.1.1",
     "lodash": "^4.17.15",
     "mongodb": "*",
