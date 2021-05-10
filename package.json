@@ -28,7 +28,7 @@
     "jade": "*",
     "jquery": "^3.4.1",
     "jsdom": "^15.1.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mongodb": "*",
     "mongoose": "*",
     "multer": "*",
