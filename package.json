@@ -27,7 +27,7 @@
     "http-server": "^0.11.1",
     "jade": "*",
     "jquery": "^3.4.1",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "lodash": "^4.17.15",
     "mongodb": "*",
     "mongoose": "*",
